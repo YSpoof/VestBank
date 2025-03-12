@@ -41,6 +41,14 @@ export const routes: Routes = [
         },
       },
       {
+        path: 'reset',
+        loadComponent() {
+          return import('./pages/dashboard/reset/reset.component').then(
+            (m) => m.ResetPageComponent
+          );
+        },
+      },
+      {
         path: 'register',
         loadComponent() {
           return import('./pages/dashboard/register/register.component').then(

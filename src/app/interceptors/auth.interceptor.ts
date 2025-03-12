@@ -5,6 +5,10 @@ import { StorageService } from '../services/storage.service';
 import { UserService } from '../services/user.service';
 
 export const AuthInterceptor: HttpInterceptorFn = (req, next) => {
+  if (req.url.includes('debug')) {
+    return next(req);
+  }
+
   const storageSvc = inject(StorageService);
   const userSvc = inject(UserService);
 

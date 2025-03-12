@@ -7,42 +7,53 @@ import { UserService } from '../../../services/user.service';
 
 @Component({
   imports: [ReactiveFormsModule, RouterModule],
-  template: ` @if (true) {
-    <div class="flex flex-col items-center justify-center h-full">
-      <p class="text-2xl font-bold mb-4">Acesse a VestBank!</p>
+  template: `
+    <div
+      class="h-screen content-center place-items-center bg-vb-black-secondary/90"
+    >
+      <div class="bg-stone-200 p-8 rounded-lg shadow-lg shadow-orange-700">
+        <p class="text-3xl font-bold mb-6 text-orange-500 text-center">
+          VestBank
+        </p>
+        <hr class="border-gray-400" />
+        <p class="text-2xl font-bold mb-4 mt-4 text-orange-500">
+          Acesse sua conta!
+        </p>
 
-      <form [formGroup]="loginForm" class="flex flex-col gap-2 w-80">
-        <input
-          formControlName="email"
-          type="email"
-          class="border rounded p-2"
-          placeholder="Email"
-        />
-        <input
-          formControlName="password"
-          type="password"
-          class="border rounded p-2"
-          placeholder="Password"
-        />
-        <button
-          (click)="login()"
-          class="transition-all cursor-pointer bg-green-700 hover:bg-green-800 active:scale-95 text-white font-bold py-2 px-4 rounded"
-        >
-          Login
-        </button>
-        <a
-          routerLink="/dashboard/register"
-          class="text-blue-500 hover:text-blue-700"
-          >Não sou cliente</a
-        >
-        <a
-          routerLink="/dashboard/reset"
-          class="text-yellow-500 hover:text-yellow-700"
-          >Esqueci a senha</a
-        >
-      </form>
+        <form [formGroup]="loginForm" class="flex flex-col gap-4 w-80">
+          <input
+            formControlName="email"
+            type="email"
+            class="border rounded p-2 border-orange-500 hover:border-orange-700"
+            placeholder="Email"
+          />
+          <input
+            formControlName="password"
+            type="password"
+            class="border border-orange-500 rounded hover:border-orange-700 p-2"
+            placeholder="Senha"
+          />
+          <button
+            (click)="login()"
+            class="transition-all cursor-pointer bg-green-700 hover:bg-green-800 active:scale-95 text-white font-bold py-2 px-4 rounded"
+          >
+            Entrar
+          </button>
+          <a
+            routerLink="/dashboard/reset"
+            class="text-orange-500 hover:text-orange-700"
+            >Esqueci a senha</a
+          >
+          <hr class="border-gray-400" />
+          <a
+            routerLink="/dashboard/register"
+            class="text-blue-500 hover:text-blue-700"
+            >Não sou cliente</a
+          >
+        </form>
+      </div>
     </div>
-    }`,
+  `,
 })
 export class LoginPageComponent {
   userSvc = inject(UserService);
