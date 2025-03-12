@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { AuthRequired } from './guards/authRequired.guard';
+import { DebugComponent } from './pages/debug/debug.component';
 
 export const routes: Routes = [
   {
@@ -8,6 +10,10 @@ export const routes: Routes = [
         (m) => m.HomePageComponent
       );
     },
+  },
+  {
+    path: 'debug',
+    component: DebugComponent,
   },
   {
     path: 'dashboard',
@@ -22,6 +28,15 @@ export const routes: Routes = [
         loadComponent() {
           return import('./pages/dashboard/dashboard.component').then(
             (m) => m.DashboardPageComponent
+          );
+        },
+        canActivate: [AuthRequired],
+      },
+      {
+        path: 'reset',
+        loadComponent() {
+          return import('./pages/dashboard/reset/reset.component').then(
+            (m) => m.ResetPageComponent
           );
         },
       },
