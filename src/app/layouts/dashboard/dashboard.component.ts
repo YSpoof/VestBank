@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DashFooterComponent } from '../../components/dashboard/footer/footer.component';
+import { DashHeaderComponent } from '../../components/dashboard/header/header.component';
 
 @Component({
-  selector: 'app-dashboard',
-  imports: [RouterModule],
+  imports: [RouterModule, DashHeaderComponent, DashFooterComponent],
   template: `
-    <p>Dashboard LAYOUT works!</p>
+    <dashboard-header />
     <router-outlet></router-outlet>
+    <dashboard-footer />
   `,
 })
 export class DashboardLayoutComponent {}
