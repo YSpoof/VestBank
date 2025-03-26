@@ -1,9 +1,15 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  isDevMode,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
+  PreloadAllModules,
   provideRouter,
   withComponentInputBinding,
   withInMemoryScrolling,
+  withPreloading,
   withViewTransitions,
 } from '@angular/router';
 import { provideToastr } from 'ngx-toastr';
@@ -17,6 +23,7 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
+import { provideServiceWorker } from '@angular/service-worker';
 import { routes } from './app.routes';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
@@ -27,11 +34,16 @@ export const appConfig: ApplicationConfig = {
       routes,
       withViewTransitions(),
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
-      withComponentInputBinding()
+      withComponentInputBinding(),
+      withPreloading(PreloadAllModules)
     ),
     provideClientHydration(withEventReplay()),
     provideAnimations(),
     provideToastr(),
     provideHttpClient(withFetch(), withInterceptors([AuthInterceptor])),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
 };
