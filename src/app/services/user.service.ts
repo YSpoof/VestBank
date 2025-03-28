@@ -8,6 +8,8 @@ import {
   LoginRequest,
   RefreshResponse,
   RegisterRequest,
+  TransferRequest,
+  TransferResponse,
   UserResponse,
 } from '../types/api';
 import { StorageService } from './storage.service';
@@ -21,6 +23,8 @@ export class UserService {
   private router = inject(Router);
   public $refreshNeeded = new Subject<boolean>();
   public authenticated = signal<boolean>(false);
+  public user = signal<UserResponse | null>(null);
+  public account = signal<AccountResponse | null>(null);
 
   onLogin(credentials: LoginRequest | null) {
     return this.httpClient.post<UserResponse>('/api/login', credentials);
@@ -35,11 +39,20 @@ export class UserService {
   }
 
   doLogout() {
+    this.account.set(null);
+    this.user.set(null);
     this.httpClient.delete('/api/logout');
     this.authenticated.set(false);
     this.storageClient.clear();
     this.$refreshNeeded.next(true);
     this.router.navigate(['/']);
+  }
+
+  doTransfer(data: TransferRequest) {
+    return this.httpClient.post<TransferResponse>('/api/transfer', {
+      pixi: data.pixi,
+      amount: data.amount,
+    });
   }
 
   getNewToken() {
@@ -64,11 +77,23 @@ export class UserService {
       });
   }
 
-  getAccountData() {
-    return this.httpClient.get<AccountResponse>('/api/account');
+  loadAccountData() {
+    this.httpClient.get<AccountResponse>('/api/account').subscribe({
+      next: (res) => {
+        this.account.set(res);
+      },
+      error: (_err) => {
+        this.account.set(null);
+        this.getNewToken();
+      },
+    });
   }
 
   getDebugData() {
     return this.httpClient.get<DebugData>('/api/debug');
+  }
+
+  addDebugMoney() {
+    return this.httpClient.post<DebugData>('/api/debug', {});
   }
 }

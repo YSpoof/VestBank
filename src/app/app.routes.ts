@@ -61,7 +61,7 @@ export const routes: Routes = [
         loadComponent() {
           return import(
             './components/dashboard/transfer/transfer.component'
-          ).then((m) => m.TransferComponent);
+          ).then((m) => m.DashboardTransferComponent);
         },
       },
       {
