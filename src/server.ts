@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { validateJwtToken } from './utils/server/jwt';
 import { accountRoute } from './utils/server/routes/account.get';
 import { debugRoute } from './utils/server/routes/debug.get';
+import { debugPostRoute } from './utils/server/routes/debug.post';
 import { deleteRoute } from './utils/server/routes/delete.delete';
 import { loginRoute } from './utils/server/routes/login.post';
 import { logoutRoute } from './utils/server/routes/logout.delete';
@@ -17,6 +18,7 @@ import { notFoundRoute } from './utils/server/routes/notFound';
 import { refreshRoute } from './utils/server/routes/refresh.post';
 import { registerRoute } from './utils/server/routes/register.post';
 import { resetRoute } from './utils/server/routes/reset.post';
+import { transferRoute } from './utils/server/routes/transfer.post';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -36,7 +38,10 @@ app.post('/api/refresh', refreshRoute);
 
 app.delete('/api/delete', validateJwtToken, deleteRoute);
 
+app.post('/api/transfer', validateJwtToken, transferRoute);
+
 app.get('/api/debug', debugRoute);
+app.post('/api/debug', debugPostRoute);
 
 app.get('/api/account', validateJwtToken, accountRoute);
 

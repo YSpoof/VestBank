@@ -61,8 +61,9 @@ export const routes: Routes = [
         loadComponent() {
           return import(
             './components/dashboard/transfer/transfer.component'
-          ).then((m) => m.TransferComponent);
+          ).then((m) => m.DashboardTransferComponent);
         },
+        canActivate: [AuthRequired],
       },
       {
         path: 'settings',
@@ -71,6 +72,7 @@ export const routes: Routes = [
             './components/dashboard/settings/settings.component'
           ).then((m) => m.SettingsComponent);
         },
+        canActivate: [AuthRequired],
       },
     ],
   },
