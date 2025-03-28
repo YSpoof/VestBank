@@ -190,29 +190,26 @@ export class DebugComponent {
   }
 
   refreshData() {
-    this.isLoading.set(true);
+    const timeout = setTimeout(() => {
+      this.isLoading.set(true);
+    }, 300);
     this.userSvc.getDebugData().subscribe({
       next: (data) => {
         this.debugData.set(data);
         this.isLoading.set(false);
+        clearTimeout(timeout);
+        this.toastSvc.showSuccess('Debug data fetched');
       },
       error: () => {
         this.toastSvc.showError('Failed to fetch debug data');
         this.isLoading.set(false);
+        clearTimeout(timeout);
+        this.toastSvc.showError('Failed to fetch debug data');
       },
     });
   }
 
   ngOnInit() {
-    this.userSvc.getDebugData().subscribe({
-      next: (data) => {
-        this.debugData.set(data);
-        this.isLoading.set(false);
-      },
-      error: () => {
-        this.toastSvc.showError('Failed to fetch debug data');
-        this.isLoading.set(false);
-      },
-    });
+    this.refreshData();
   }
 }
