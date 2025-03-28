@@ -19,7 +19,7 @@ import { AccountResponse } from '../../types/api';
           {{ account()!.balance }}
         </li>
         } @else {
-        <li>Conta suspensa: {{ account()!.balance }}</li>
+        <li>Conta suspensa com saldo: {{ account()!.balance }}</li>
         }
       </ul>
       }
