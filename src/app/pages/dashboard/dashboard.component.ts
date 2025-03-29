@@ -1,12 +1,10 @@
-import { afterNextRender, Component, inject, signal } from '@angular/core';
-import { DashboardTransferComponent } from '../../components/dashboard/transfer/transfer.component';
+import { afterNextRender, Component, inject } from '@angular/core';
 import { ToastService } from '../../services/toast.service';
 import { UserService } from '../../services/user.service';
-import { AccountResponse } from '../../types/api';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [DashboardTransferComponent],
+  imports: [],
   template: `
     <div class="flex flex-col items-center justify-center h-screen">
       <p class="text-2xl font-bold mb-4">Dashboard</p>
@@ -19,9 +17,6 @@ import { AccountResponse } from '../../types/api';
           Chave: {{ this.userSvc.account()!.pixi }} | Saldo: F$
           {{ this.userSvc.account()!.balance }}
         </p>
-        <div class="my-4">
-          <app-dashboard-transfer />
-        </div>
         } @else {
         <p>
           Conta suspensa com saldo: F$ {{ this.userSvc.account()!.balance }}
