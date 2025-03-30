@@ -8,3 +8,11 @@
   --color-vb-black: #131112;
   --color-vb-black-secondary: #1c1b1b;
 }
+
+#headerTitle {
+  view-transition-name: headerTitle;
+}
+
+#headerTitle {
+  view-transition-name: headerTitle;
+}

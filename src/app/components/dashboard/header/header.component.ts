@@ -5,10 +5,16 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'dashboard-header',
   imports: [RouterLink, RouterLinkActive],
   template: `<header
-    class="flex justify-between p-4 bg-vb-black text-vb-secondary"
+    class="flex flex-col md:flex-row justify-between gap-4 p-4 bg-vb-black text-vb-secondary"
+    id="header"
   >
-    <a routerLink="/dashboard" routerLinkActive="text-vb-primary">Dashboard</a>
-    <nav class="flex gap-4">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="text-vb-primary mx-auto md:mx-0"
+      id="headerTitle"
+      >Dashboard</a
+    >
+    <nav class="flex flex-col items-center md:flex-row gap-4" id="headerNav">
       <a routerLink="/dashboard/transfer" routerLinkActive="text-vb-primary"
         >Trasnferências</a
       >

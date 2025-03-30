@@ -1,7 +1,7 @@
 import {
   ApplicationConfig,
   isDevMode,
-  provideZoneChangeDetection,
+  provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
@@ -29,7 +29,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideExperimentalZonelessChangeDetection(),
     provideRouter(
       routes,
       withViewTransitions(),

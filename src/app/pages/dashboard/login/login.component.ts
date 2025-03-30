@@ -20,7 +20,7 @@ import { UserService } from '../../../services/user.service';
           Acesse sua conta!
         </p>
 
-        <form [formGroup]="loginForm" class="flex flex-col gap-4 w-80">
+        <form [formGroup]="loginForm" class="flex flex-col gap-4 md:w-80">
           <input
             formControlName="email"
             type="email"

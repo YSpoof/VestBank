@@ -59,18 +59,18 @@ export const routes: Routes = [
       {
         path: 'transfer',
         loadComponent() {
-          return import(
-            './components/dashboard/transfer/transfer.component'
-          ).then((m) => m.DashboardTransferComponent);
+          return import('./pages/dashboard/transfer/transfer.component').then(
+            (m) => m.TransferPageComponent
+          );
         },
         canActivate: [AuthRequired],
       },
       {
         path: 'settings',
         loadComponent() {
-          return import(
-            './components/dashboard/settings/settings.component'
-          ).then((m) => m.SettingsComponent);
+          return import('./pages/dashboard/settings/settings.component').then(
+            (m) => m.SettingsPageComponent
+          );
         },
         canActivate: [AuthRequired],
       },

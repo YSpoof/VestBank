@@ -15,10 +15,7 @@ import { IntroModalComponent } from '../../components/home/intro-modal/intro-mod
     AccountCardComponent,
   ],
   template: ` <app-header />
-    <div
-      id="sectionBanner"
-      class="bg-[url('https://picsum.photos/1280/720')] bg-cover bg-bottom"
-    >
+    <div id="sectionBanner" class="bg-[url('/images/home/hero.avif')] bg-cover">
       <section
         id="introSection"
         class="container mx-auto h-screen grid place-items-center text-white"
@@ -27,9 +24,9 @@ import { IntroModalComponent } from '../../components/home/intro-modal/intro-mod
           <h1
             class="font-bold text-lg md:text-4xl bg-vb-black/80 backdrop-blur-sm self-center p-4"
           >
-            VestBank, o banco que não te deixa pelado!
+            O banco que não te deixa pelado!
           </h1>
-          <app-intro-modal />
+          <app-intro-modal id="introModal" />
         </div>
       </section>
     </div>
@@ -63,11 +60,11 @@ import { IntroModalComponent } from '../../components/home/intro-modal/intro-mod
         </div>
         <div class="grow-2 w-full">
           <img
-            src="https://picsum.photos/640/480"
-            alt="Descrição da imagem"
-            class="mx-auto"
-            width="640"
-            height="480"
+            src="/images/home/card.avif"
+            alt="Cartão de Crédito"
+            class="mx-auto rounded-xl"
+            width="512"
+            height="512"
           />
         </div>
       </div>
@@ -78,11 +75,11 @@ import { IntroModalComponent } from '../../components/home/intro-modal/intro-mod
       >
         <div class="grow-2 w-full">
           <img
-            src="https://picsum.photos/640/480"
-            alt="Descrição da imagem"
-            class="mx-auto"
-            width="640"
-            height="480"
+            src="/images/home/advantages.avif"
+            alt="Vantagi"
+            class="mx-auto rounded-xl"
+            width="512"
+            height="512"
           />
         </div>
         <div class="p-4">
@@ -100,13 +97,21 @@ import { IntroModalComponent } from '../../components/home/intro-modal/intro-mod
       <div
         class="container mx-auto flex flex-col md:flex-row gap-4 justify-between"
       >
-        <app-account-card title="Conta PF">
+        <app-account-card
+          title="Conta PF"
+          imgAlt="Conta PF"
+          imageSrc="/images/home/pf.avif"
+        >
           Conta para pessoa física. Com ela você pode fazer transferências,
           pagamentos e muito mais.
         </app-account-card>
-        <app-account-card title="Conta PJ">
-          Conta para pessoa jurídica. Com ela você pode fazer transferências,
-          pagamentos e muito mais.
+        <app-account-card
+          title="Conta PJ"
+          imgAlt="Conta PJ"
+          imageSrc="/images/home/pj.avif"
+        >
+          Conta para empresários. Com ela você obtem crédito exclusivo e muito
+          mais.
         </app-account-card>
       </div>
     </section>

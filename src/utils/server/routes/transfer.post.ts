@@ -83,18 +83,11 @@ export async function transferRoute(
   const transfer = await prisma.transfer.create({
     data: {
       amount: req.body.amount,
-      fromAccountId: updatedSendingAccount.id,
-      toAccountId: updatedReceivingAccount.id,
+      fromPixi: updatedSendingAccount.pixi,
+      toPixi: updatedReceivingAccount.pixi,
     },
   });
 
-  res.json({
-    amount: req.body.amount,
-    pixi: req.body.pixi,
-    record: {
-      id: transfer.id,
-      createdAt: transfer.createdAt,
-    },
-  });
+  res.json(transfer);
   return;
 }
