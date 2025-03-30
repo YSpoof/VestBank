@@ -56,6 +56,24 @@ export const routes: Routes = [
           );
         },
       },
+      {
+        path: 'transfer',
+        loadComponent() {
+          return import(
+            './components/dashboard/transfer/transfer.component'
+          ).then((m) => m.DashboardTransferComponent);
+        },
+        canActivate: [AuthRequired],
+      },
+      {
+        path: 'settings',
+        loadComponent() {
+          return import(
+            './components/dashboard/settings/settings.component'
+          ).then((m) => m.SettingsComponent);
+        },
+        canActivate: [AuthRequired],
+      },
     ],
   },
 ];
