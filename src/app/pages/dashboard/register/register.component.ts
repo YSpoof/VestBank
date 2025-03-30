@@ -8,48 +8,51 @@ import { UserService } from '../../../services/user.service';
 @Component({
   imports: [ReactiveFormsModule, RouterModule],
   template: ` @if (true) {
-    <div class="flex flex-col items-center justify-center h-full">
-      <p class="text-2xl font-bold mb-4">Abra a sua conta em segundos!</p>
-
-      <form
-        [formGroup]="registerForm"
-        class="flex flex-col gap-2 w-80"
-        id="registerForm"
+    <div
+      class="content-center place-items-center items-center justify-center h-screen bg-vb-black-secondary/90"
+    >
+      <div
+        class="flex flex-col bg-stone-200 p-8 rounded-lg items-center justify-center shadow-lg shadow-orange-700 text-orange-700"
       >
-        <input
-          formControlName="name"
-          type="text"
-          class="border rounded p-2"
-          placeholder="Nome"
-          required="true"
-        />
-        <input
-          formControlName="email"
-          type="email"
-          class="border rounded p-2"
-          placeholder="Email"
-          required="true"
-        />
-        <input
-          formControlName="password"
-          type="password"
-          class="border rounded p-2"
-          placeholder="Password"
-          required="true"
-        />
-        <button
-          (click)="register()"
-          class="transition-all cursor-pointer bg-blue-500 hover:bg-blue-700 active:scale-95 text-white font-bold py-2 px-4 rounded"
-        >
-          Criar conta
-        </button>
-        <a
-          routerLink="/dashboard/login"
-          class="text-blue-500 hover:text-blue-700"
-          >Já tem uma conta? Faça login.</a
-        >
-      </form>
+        <p class="text-2xl font-bold mb-4">Abra a sua conta em segundos!</p>
+
+        <form [formGroup]="registerForm" class="flex flex-col gap-4 w-80">
+          <input
+            formControlName="name"
+            type="text"
+            class="border rounded p-2 hover:border-orange-500 hover:text-orange-500"
+            placeholder="Nome"
+            required="true"
+          />
+          <input
+            formControlName="email"
+            type="email"
+            class="border rounded p-2 hover:border-orange-500 hover:text-orange-500"
+            placeholder="Email"
+            required="true"
+          />
+          <input
+            formControlName="password"
+            type="password"
+            class="border rounded p-2 hover:border-orange-500 hover:text-orange-500"
+            placeholder="Password"
+            required="true"
+          />
+          <button
+            (click)="register()"
+            class="transition-all cursor-pointer bg-blue-500 hover:bg-blue-700 active:scale-95 text-white font-bold py-2 px-4 rounded"
+          >
+            Criar conta
+          </button>
+          <a
+            routerLink="/dashboard/login"
+            class="text-blue-500 hover:text-blue-700"
+            >Já tem uma conta? Faça login.</a
+          >
+        </form>
+      </div>
     </div>
+
     }`,
 })
 export class RegisterPageComponent {
