@@ -9,6 +9,11 @@ export interface RegisterRequest {
   password: string;
 }
 
+export interface TransferRequest {
+  amount: number;
+  pixi: string;
+}
+
 export interface UserResponse {
   id: string;
   name: string;
@@ -27,6 +32,15 @@ export interface AccountResponse {
   pixi: string;
   suspended: boolean;
   balance: number;
+}
+
+export interface TransferResponse {
+  amount: number;
+  pixi: string;
+  record?: {
+    id: string;
+    createdAt: Date;
+  };
 }
 
 export interface DebugUser {
@@ -49,4 +63,5 @@ export interface DebugAccount {
 export interface DebugData {
   users: DebugUser[];
   accounts: DebugAccount[];
+  message?: string;
 }
