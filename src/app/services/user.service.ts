@@ -10,6 +10,7 @@ import {
   RegisterRequest,
   TransferRequest,
   TransferResponse,
+  TransfersResponse,
   UserResponse,
 } from '../types/api';
 import { StorageService } from './storage.service';
@@ -25,9 +26,26 @@ export class UserService {
   public authenticated = signal<boolean>(false);
   public user = signal<UserResponse | null>(null);
   public account = signal<AccountResponse | null>(null);
+  public transfers = signal<TransfersResponse>({ sent: [], received: [] });
+  public allTransfers = signal<TransferResponse[]>([]);
 
   onLogin(credentials: LoginRequest | null) {
     return this.httpClient.post<UserResponse>('/api/login', credentials);
+  }
+
+  doTokenLogin() {
+    this.onLogin(null).subscribe({
+      next: (res) => {
+        this.storageClient.set('token', res.token);
+        this.storageClient.set('refresh', res.refreshToken);
+        this.authenticated.set(true);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        if (err.status === 0) return;
+        this.authenticated.set(false);
+      },
+    });
   }
 
   onRegister(credentials: RegisterRequest) {
@@ -84,6 +102,23 @@ export class UserService {
       },
       error: (_err) => {
         this.account.set(null);
+        this.getNewToken();
+      },
+    });
+    this.httpClient.get<TransfersResponse>('/api/transfers').subscribe({
+      next: (res) => {
+        this.transfers.set(res);
+        this.allTransfers.set(
+          [...res.sent, ...res.received].sort((a, b) => {
+            return (
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            );
+          })
+        );
+      },
+      error: (_err) => {
+        this.transfers.set({ sent: [], received: [] });
+        this.allTransfers.set([]);
         this.getNewToken();
       },
     });

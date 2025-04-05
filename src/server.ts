@@ -19,6 +19,7 @@ import { refreshRoute } from './utils/server/routes/refresh.post';
 import { registerRoute } from './utils/server/routes/register.post';
 import { resetRoute } from './utils/server/routes/reset.post';
 import { transferRoute } from './utils/server/routes/transfer.post';
+import { transfersRoute } from './utils/server/routes/transfers.get';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -38,6 +39,7 @@ app.post('/api/refresh', refreshRoute);
 
 app.delete('/api/delete', validateJwtToken, deleteRoute);
 
+app.get('/api/transfers', validateJwtToken, transfersRoute);
 app.post('/api/transfer', validateJwtToken, transferRoute);
 
 app.get('/api/debug', debugRoute);

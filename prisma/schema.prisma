@@ -27,16 +27,16 @@ model Account {
   pixi              String     @unique @default(cuid())
   suspended         Boolean    @default(false)
   balance           Float      @default(0)
-  sentTransfers     Transfer[] @relation("SentTransfers")
-  receivedTransfers Transfer[] @relation("ReceivedTransfers")
+  sentTransfers     Transfer[] @relation("FromAccount")
+  receivedTransfers Transfer[] @relation("ToAccount")
 }
 
 model Transfer {
-  id            String   @id @default(uuid())
-  fromAccount   Account  @relation("SentTransfers", fields: [fromAccountId], references: [id])
-  fromAccountId String
-  toAccount     Account  @relation("ReceivedTransfers", fields: [toAccountId], references: [id])
-  toAccountId   String
-  amount        Int
-  createdAt     DateTime @default(now())
+  id          String   @id @default(uuid())
+  fromAccount Account  @relation("FromAccount", fields: [fromPixi], references: [pixi])
+  fromPixi    String
+  toAccount   Account  @relation("ToAccount", fields: [toPixi], references: [pixi])
+  toPixi      String
+  amount      Float
+  createdAt   DateTime @default(now())
 }

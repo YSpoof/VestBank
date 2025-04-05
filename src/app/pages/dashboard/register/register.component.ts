@@ -11,7 +11,11 @@ import { UserService } from '../../../services/user.service';
     <div class="flex flex-col items-center justify-center h-full">
       <p class="text-2xl font-bold mb-4">Abra a sua conta em segundos!</p>
 
-      <form [formGroup]="registerForm" class="flex flex-col gap-2 w-80">
+      <form
+        [formGroup]="registerForm"
+        class="flex flex-col gap-2 w-80"
+        id="registerForm"
+      >
         <input
           formControlName="name"
           type="text"
@@ -100,5 +104,9 @@ export class RegisterPageComponent {
         this.toast.showError(err.error.message);
       },
     });
+  }
+
+  constructor() {
+    this.userSvc.doTokenLogin();
   }
 }
