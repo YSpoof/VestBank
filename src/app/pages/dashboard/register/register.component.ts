@@ -105,4 +105,8 @@ export class RegisterPageComponent {
       },
     });
   }
+
+  constructor() {
+    this.userSvc.doTokenLogin();
+  }
 }

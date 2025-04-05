@@ -12,7 +12,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       routerLink="/dashboard"
       routerLinkActive="text-vb-primary mx-auto md:mx-0"
       id="headerTitle"
-      >Dashboard</a
+      >Painel</a
     >
     <nav class="flex flex-col items-center md:flex-row gap-4" id="headerNav">
       <a routerLink="/dashboard/transfer" routerLinkActive="text-vb-primary"

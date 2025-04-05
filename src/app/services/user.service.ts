@@ -33,6 +33,21 @@ export class UserService {
     return this.httpClient.post<UserResponse>('/api/login', credentials);
   }
 
+  doTokenLogin() {
+    this.onLogin(null).subscribe({
+      next: (res) => {
+        this.storageClient.set('token', res.token);
+        this.storageClient.set('refresh', res.refreshToken);
+        this.authenticated.set(true);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        if (err.status === 0) return;
+        this.authenticated.set(false);
+      },
+    });
+  }
+
   onRegister(credentials: RegisterRequest) {
     return this.httpClient.post<UserResponse>('/api/register', credentials);
   }

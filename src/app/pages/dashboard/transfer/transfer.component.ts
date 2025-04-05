@@ -178,7 +178,7 @@ export class TransferPageComponent {
       next: (res) => {
         console.log('Transfer successful:', res);
         this.toastSvc.showSuccess(
-          `Transferido F$${res.amount} para ${res.toPixi}`
+          `Transferido ${moneyParser(res.amount)} para ${res.toPixi}`
         );
         this.form.reset();
         this.userSvc.loadAccountData();
