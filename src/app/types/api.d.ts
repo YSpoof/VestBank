@@ -35,12 +35,16 @@ export interface AccountResponse {
 }
 
 export interface TransferResponse {
+  id: string;
+  createdAt: Date;
+  fromPixi: string;
+  toPixi: string;
   amount: number;
-  pixi: string;
-  record?: {
-    id: string;
-    createdAt: Date;
-  };
+}
+
+export interface TransfersResponse {
+  sent: TransferResponse[];
+  received: TransferResponse[];
 }
 
 export interface DebugUser {

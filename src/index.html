@@ -1,16 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>VestBank - O banco que não te deixa pelado!</title>
-    <base href="/"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-    <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
-</head>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#1976d2" />
+    <style>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes revealText {
+        0% {
+          width: 0;
+          opacity: 0;
+        }
+        50% {
+          width: 100%;
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      .animate-float-delayed {
+        animation: float 3s ease-in-out infinite 1.5s;
+      }
+      .animate-reveal {
+        animation: revealText 2s ease-out forwards;
+        overflow: hidden;
+        white-space: nowrap;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
   <body>
-    <app-root></app-root>
-    <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
+    <app-root>
+      <div
+        id="appLoader"
+        class="flex flex-col items-center justify-center min-h-screen bg-stone-800 p-4"
+      >
+        <div class="text-center w-full">
+          <div class="mb-8">
+            <div class="inline-block relative">
+              <span class="text-5xl font-bold text-white animate-float"
+                >Vest</span
+              >
+              <span
+                class="text-5xl font-bold text-vb-secondary animate-float-delayed"
+                >Bank</span
+              >
+              <div
+                class="absolute -bottom-1 left-0 w-full h-1 bg-vb-tertiary rounded-full"
+              ></div>
+            </div>
+            <div class="mt-4 h-[30px] overflow-hidden">
+              <p class="text-xl text-vb-primary italic animate-reveal">
+                O banco que não te deixa pelado!
+              </p>
+            </div>
+          </div>
+          <div
+            class="absolute top-0 left-0 h-full bg-vb-tertiary rounded-full animate-[loading_2s_ease-in-out_infinite]"
+          ></div>
+        </div>
+        <div class="mt-2 text-vb-primary text-sm animate-pulse">
+          Carregando sua experiência financeira...
+        </div>
+      </div>
+    </app-root>
+  </body>
 </html>

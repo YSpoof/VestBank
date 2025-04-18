@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
       <div>
         <h2 class="text-2xl text-center mb-4">Cadastre-se já</h2>
         <p>
-          Faça parte do nosso time e aproveitar as vantagens que só o VestBank
+          Faça parte do nosso time e aproveite as vantagens que só o VestBank
           pode oferecer.
         </p>
       </div>

@@ -6,9 +6,11 @@ import { Component, input } from '@angular/core';
   template: `
     <div class="bg-vb-black p-4">
       <img
-        src="https://picsum.photos/640/480"
-        alt="Imagem da conta PF"
-        class="mb-2 mx-auto"
+        [src]="imageSrc()"
+        [alt]="imgAlt()"
+        class="mb-2 mx-auto rounded-xl"
+        width="512"
+        height="512"
       />
       <h2 class="text-4xl md:text-6xl text-vb-primary font-bold text-center">
         {{ title() }}
@@ -21,4 +23,6 @@ import { Component, input } from '@angular/core';
 })
 export class AccountCardComponent {
   title = input('Title');
+  imageSrc = input.required<string>();
+  imgAlt = input('Image alt text');
 }
