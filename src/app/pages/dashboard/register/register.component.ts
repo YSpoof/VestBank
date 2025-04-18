@@ -24,6 +24,16 @@ import { UserService } from '../../../services/user.service';
             placeholder="Nome"
             required="true"
           />
+          @if (this.registerForm.get('name')?.invalid &&
+          (this.registerForm.get('name')?.dirty ||
+          this.registerForm.get('name')?.touched)) { @if
+          (this.registerForm.get('name')?.hasError('required')) {
+          <div class="text-red-500 text-sm">O campo nome é obrigatório.</div>
+          } @if (this.registerForm.get('name')?.hasError('minlength')) {
+          <div class="text-red-500 text-sm">
+            O campo nome precisa ter 3 caracteres no mínimo.
+          </div>
+          } }
           <input
             formControlName="email"
             type="email"
@@ -31,13 +41,34 @@ import { UserService } from '../../../services/user.service';
             placeholder="Email"
             required="true"
           />
+          @if (this.registerForm.get('email')?.invalid &&
+          (this.registerForm.get('email')?.dirty ||
+          this.registerForm.get('email')?.touched)) { @if
+          (this.registerForm.get('email')?.hasError('required')) {
+          <div class="text-red-500 text-sm">O campo e-mail é obrigatório.</div>
+          } @if (this.registerForm.get('email')?.hasError('email')) {
+          <div class="text-red-500 text-sm">
+            O campo e-mail precisa ter um formato válido (p. e.:
+            meuemail&#64;exemplo.com).
+          </div>
+          } }
           <input
             formControlName="password"
             type="password"
             class="border rounded p-2 hover:border-orange-500 hover:text-orange-500"
-            placeholder="Password"
+            placeholder="Senha"
             required="true"
           />
+          @if (this.registerForm.get('password')?.invalid &&
+          (this.registerForm.get('password')?.dirty ||
+          this.registerForm.get('password')?.touched)) { @if
+          (this.registerForm.get('password')?.hasError('required')) {
+          <div class="text-red-500 text-sm">O campo senha é obrigatório.</div>
+          } @if (this.registerForm.get('password')?.hasError('minlength')) {
+          <div class="text-red-500 text-sm">
+            O campo senha precisa ter 3 caracteres no mínimo.
+          </div>
+          } }
           <button
             (click)="register()"
             class="transition-all cursor-pointer bg-blue-500 hover:bg-blue-700 active:scale-95 text-white font-bold py-2 px-4 rounded"
@@ -62,9 +93,9 @@ export class RegisterPageComponent {
   formBuilder = inject(FormBuilder);
   toast = inject(ToastService);
   registerForm = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(1)]],
+    name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(1)]],
+    password: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   register() {
